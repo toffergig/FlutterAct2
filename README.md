@@ -1,6 +1,6 @@
 # flutter_activity2
 
-A new Flutter project for creating a ListView Application. Below you will see how the application looks like. This utlizes GET API calls for data.\
+ListView simple mobile application built using flutter. Below you will see how the application looks like. This utlizes GET API calls for data.\
 ![Image Name](images/MergedImages.png)
 
 ## Getting Started

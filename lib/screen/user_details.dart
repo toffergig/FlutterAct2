@@ -4,9 +4,7 @@ import 'package:flutter_activity2/Models/user_model.dart';
 class UserDetails extends StatelessWidget {
   final UserModel user;
 
-  const UserDetails(
-    {super.key, required this.user}
-    );
+  const UserDetails({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +16,7 @@ class UserDetails extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.indigo,
+        iconTheme: const IconThemeData(color: Colors.white) // Setting icon color to white
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,8 +28,8 @@ class UserDetails extends StatelessWidget {
               const SizedBox(height: 20),
               _buildRow(title: 'Username', value: user.username, fontSize: 15),
               const SizedBox(height: 20),
-               _buildDivider(),
-               const SizedBox(height: 20),
+              _buildDivider(),
+              const SizedBox(height: 20),
               _buildRow(title: 'Email', value: user.email, fontSize: 15),
               const SizedBox(height: 20),
               _buildDivider(),
@@ -61,18 +60,19 @@ class UserDetails extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             backgroundColor: Colors.indigo,
             radius: 60,
-            child: Text(
-              name != null && name.isNotEmpty ? name[0] : '',
-              style: const TextStyle(fontSize: 55, fontWeight: FontWeight.bold, color: Colors.white),
+            child: Icon(
+              Icons.person_outline_outlined,
+              color: Colors.white,
+              size: 65,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             name ?? '',
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            // style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           const SizedBox(height: 16),
         ],
@@ -81,13 +81,14 @@ class UserDetails extends StatelessWidget {
   }
 
   // Row Builders
-  Widget _buildRow({required String title, String? value, double fontSize = 16}) {
+  Widget _buildRow(
+      {required String title, String? value, double fontSize = 16}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          // style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const SizedBox(height: 4),
         Text(
@@ -104,7 +105,7 @@ class UserDetails extends StatelessWidget {
       children: [
         const Text(
           'Address',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const SizedBox(height: 10),
         if (address != null) ...[
@@ -125,7 +126,7 @@ class UserDetails extends StatelessWidget {
       children: [
         const Text(
           'Geo',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         const SizedBox(height: 3),
         if (geo != null) ...[
@@ -142,13 +143,13 @@ class UserDetails extends StatelessWidget {
       children: [
         const Text(
           'Company',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const SizedBox(height: 10),
         if (company != null) ...[
           _buildSubSetRow(title: 'Name', value: company.name),
           _buildSubSetRow(title: 'Catch Phrase', value: company.catchPhrase),
-          _buildSubSetRow(title: 'Business', value: company.bs),
+          _buildSubSetRow(title: 'Buzz Phrase', value: company.bs),
         ],
       ],
     );
@@ -160,7 +161,7 @@ class UserDetails extends StatelessWidget {
       children: [
         Text(
           '$title:',
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          //  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
         ),
         const SizedBox(width: 5),
         Expanded(
@@ -174,9 +175,9 @@ class UserDetails extends StatelessWidget {
   }
 }
 
- Widget _buildDivider() {
-    return Container(
-      height: 1,
-      color: Colors.indigo[400],
-    );
-  }
+Widget _buildDivider() {
+  return Container(
+    height: 1,
+    color: Colors.indigo[400],
+  );
+}

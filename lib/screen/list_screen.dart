@@ -26,7 +26,7 @@ class _ListScreenState extends State<ListScreen> {
   Future<void> fetchUsers() async {
     userList.clear();
     final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+        await http.get(Uri.parse('http://192.168.1.211:3001/usergenerator'));
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
@@ -61,33 +61,18 @@ class _ListScreenState extends State<ListScreen> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: (value) => filterUsers(value),
-              decoration: InputDecoration(
-                hintText: 'Search a user',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
-          ),
           Expanded(
             child: ListView.separated(
               itemCount: filteredUsers.length,
               separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final userName = filteredUsers[index].name.toString();
-                final firstLetter = userName.isNotEmpty ? userName[0] : '';
-
                 return ListTile(
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     backgroundColor: Colors.indigo,
-                    child: Text(
-                      firstLetter,
-                      style: const TextStyle(color: Colors.white),
+                    child: Icon(
+                      Icons.person_outline_outlined,
+                      color: Colors.white,
                     ),
                   ),
                   title: Text(userName),
