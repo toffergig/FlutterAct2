@@ -46,7 +46,36 @@
       "responses": [
         {
           "uuid": "0dfc5f74-044b-474a-8e08-96fff5c585d9",
-          "body": "[\r\n  {{#repeat 30}}\r\n    {\r\n        \"id\": {{faker 'number.int' min=1 max=30}},\r\n        \"name\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\r\n        \"username\": \"{{faker 'internet.userName'}}\",\r\n        \"email\": \"{{faker 'internet.email'}}\",\r\n        \"address\": {\r\n            \"street\": \"{{faker 'address.streetAddress'}}\",\r\n            \"suite\": \"{{faker 'address.secondaryAddress'}}\",\r\n            \"city\": \"{{faker 'address.city'}}\",\r\n            \"zipcode\": \"{{faker 'address.zipCode'}}\",\r\n            \"geo\": {\r\n                \"lat\": \"{{faker 'address.latitude'}}\",\r\n                \"lng\": \"{{faker 'address.longitude'}}\"\r\n            }\r\n        },\r\n          \"phone\": \"{{faker 'phone.number'}}\",\r\n        \"website\": \"{{faker 'internet.url'}}\",\r\n        \"company\": {\r\n            \"name\": \"{{faker 'company.name'}}\",\r\n            \"catchPhrase\": \"{{faker 'company.catchPhrase'}}\",\r\n            \"bs\": \"{{faker 'company.buzzPhrase'}}\"\r\n        }\r\n    }\r\n  {{/repeat}}\r\n]\r\n",
+          "body": "[\r\n  {{#repeat 30}}\r\n    {\r\n         \"id\": {{faker 'number.int' min=1 max=30}},\r\n        \"name\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\r\n        \"username\": \"{{faker 'internet.userName'}}\",\r\n        \"email\": \"{{faker 'internet.email'}}\",\r\n        \"address\": {\r\n            \"street\": \"{{faker 'address.streetAddress'}}\",\r\n            \"suite\": \"{{faker 'address.secondaryAddress'}}\",\r\n            \"city\": \"{{faker 'address.city'}}\",\r\n            \"zipcode\": \"{{faker 'address.zipCode'}}\",\r\n            \"geo\": {\r\n                \"lat\": \"{{faker 'address.latitude'}}\",\r\n                \"lng\": \"{{faker 'address.longitude'}}\"\r\n            }\r\n        },\r\n          \"phone\": \"{{faker 'phone.number'}}\",\r\n        \"website\": \"{{faker 'internet.url'}}\",\r\n        \"company\": {\r\n            \"name\": \"{{faker 'company.name'}}\",\r\n            \"catchPhrase\": \"{{faker 'company.catchPhrase'}}\",\r\n            \"bs\": \"{{faker 'company.buzzPhrase'}}\"\r\n        }\r\n    }\r\n  {{/repeat}}\r\n]\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "5be6343b-6f45-487d-bd8a-9e544c335666",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "todos",
+      "responses": [
+        {
+          "uuid": "e83d0a73-a2fd-4fc1-9459-a3663f9d5b07",
+          "body": "{\r\n  \"todos\": [\r\n    {{#repeat 5}}\r\n      {\r\n        \"title\": \"{{faker 'lorem.word'}}\",\r\n        \"finished\": {{ faker 'datatype.boolean'}}\r\n      }\r\n    {{/repeat}}\r\n  ]\r\n}\r\n",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -75,6 +104,10 @@
     {
       "type": "route",
       "uuid": "5b6f647a-dffd-4bc7-9774-1a5283f2ad65"
+    },
+    {
+      "type": "route",
+      "uuid": "5be6343b-6f45-487d-bd8a-9e544c335666"
     }
   ],
   "proxyMode": false,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_activity2/Models/user_model.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:flutter_activity2/api/user_api_client.dart';
 import 'package:flutter_activity2/screen/user_details.dart';
+import 'package:http/http.dart' as http;
 
 class ListScreen extends StatefulWidget {
   const ListScreen({super.key});
@@ -23,19 +23,17 @@ class _ListScreenState extends State<ListScreen> {
   }
 
 //fetch users from API
-  Future<void> fetchUsers() async {
-    userList.clear();
-    final response =
-        await http.get(Uri.parse('http://192.168.1.211:3001/usergenerator'));
-    var data = jsonDecode(response.body.toString());
-
-    if (response.statusCode == 200) {
-      for (Map i in data) {
-        userList.add(UserModel.fromJson(i));
-      }
+ Future<void> fetchUsers() async {
+    try {
+      final userApiClient = UserApiClient(client: http.Client());
+      final users = await userApiClient.fetchUsers();
       setState(() {
+        userList = users;
         filteredUsers = userList;
       });
+    } catch (e) {
+      print('Error fetching users: $e');
+      // Handle error gracefully (show error message, retry mechanism, etc.)
     }
   }
 
